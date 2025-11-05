@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<!-- saved from url=(0163)https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Muscle - Open Format DJ | Afro House &amp; Amapiano</title>
+    <meta name="description" content="DJ Muscle - Open format DJ from Eswatini. Afro House, Amapiano, Deep House &amp; more. Based in Cork, Ireland.">
+    <style>
+        /* DJ Muscle Custom Green Color Scheme */
+        :root {
+            /* Green Brand Palette (replacing orange) */
+            --color-primary-green: rgba(34, 197, 94, 1); /* Main green */
+            --color-green-light: rgba(74, 222, 128, 1); /* Light green */
+            --color-green-dark: rgba(22, 163, 74, 1); /* Dark green */
+            --color-green-darker: rgba(21, 128, 61, 1); /* Darker green */
+            
+            /* Brand colors - Green theme */
+            --color-gold: var(--color-primary-green);
+            --color-african-sunset: var(--color-green-dark);
+            --color-accent-bg: rgba(34, 197, 94, 0.08);
+            
+            /* Perplexity Design System Base */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            
+            --color-dark-bg: rgba(10, 10, 10, 1);
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-border: rgba(94, 82, 64, 0.2);
+            
+            /* Typography */
+            --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+            
+            /* Spacing */
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(167, 169, 169, 0.7);
+                --color-border: rgba(119, 124, 124, 0.3);
+            }
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-dark-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-16) var(--space-24);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav__brand {
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-green);
+            text-decoration: none;
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .nav__menu {
+            display: flex;
+            gap: var(--space-32);
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav__link {
+            color: var(--color-gray-200);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            transition: color var(--duration-fast) var(--ease-standard);
+            position: relative;
+        }
+        
+        .nav__link:hover, .nav__link.active {
+            color: var(--color-primary-green);
+        }
+        
+        .nav__link:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary-green);
+            transition: width var(--duration-normal) var(--ease-standard);
+        }
+        
+        .nav__link:hover:after, .nav__link.active:after {
+            width: 100%;
+        }
+        
+        .nav__toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav__toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--color-primary-green);
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(21, 128, 61, 0.2) 100%),
+                        url('https://djmuscle.wordpress.com/wp-content/uploads/2023/10/dtp5665-e1697131170985.jpg') center/cover no-repeat;
+            position: relative;
+            padding: var(--space-32);
+        }
+        
+        .hero__content {
+            text-align: center;
+            max-width: 900px;
+            z-index: 2;
+        }
+        
+        .hero__title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-white);
+            margin-bottom: var(--space-16);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+        
+        .hero__title span {
+            background: linear-gradient(90deg, var(--color-primary-green) 0%, var(--color-green-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero__subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--color-gray-200);
+            margin-bottom: var(--space-32);
+            line-height: var(--line-height-normal);
+        }
+        
+        .hero__buttons {
+            display: flex;
+            gap: var(--space-16);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-16) var(--space-32);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-semibold);
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-standard);
+            cursor: pointer;
+            border: none;
+            font-size: var(--font-size-base);
+        }
+        
+        .btn--primary {
+            background: var(--color-primary-green);
+            color: var(--color-dark-bg);
+        }
+        
+        .btn--primary:hover {
+            background: var(--color-green-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+        }
+        
+        .btn--outline {
+            background: transparent;
+            color: var(--color-primary-green);
+            border: 2px solid var(--color-primary-green);
+        }
+        
+        .btn--outline:hover {
+            background: var(--color-primary-green);
+            color: var(--color-dark-bg);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px var(--space-24);
+        }
+        
+        .section__title {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            text-align: center;
+            margin-bottom: var(--space-32);
+            color: var(--color-gray-200);
+            position: relative;
+            padding-bottom: var(--space-16);
+        }
+        
+        .section__title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary-green) 0%, var(--color-green-light) 100%);
+            border-radius: 2px;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about { background: var(--color-surface); }
+        
+        .about__container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-32);
+            align-items: start;
+        }
+        
+        .about__name {
+            color: var(--color-primary-green);
+            margin-bottom: var(--space-16);
+            font-size: var(--font-size-2xl);
+        }
+        
+        .about__bio {
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-normal);
+            margin-bottom: var(--space-20);
+            color: var(--color-text);
+        }
+        
+        .stat {
+            text-align: center;
+            padding: var(--space-24);
+            background: var(--color-accent-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            margin-bottom: var(--space-16);
+        }
+        
+        .stat__number {
+            display: block;
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary-green);
+            line-height: 1;
+        }
+        
+        .stat__label {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-medium);
+        }
+        
+        /* Genres Grid */
+        .genres { background: var(--color-dark-bg); }
+        
+        .genres__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-24);
+        }
+        
+        .genre__card {
+            background: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .genre__card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+        }
+        
+        .genre__icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-16);
+        }
+        
+        .genre__title {
+            color: var(--color-primary-green);
+            margin-bottom: var(--space-12);
+            font-size: var(--font-size-xl);
+        }
+        
+        .genre__description {
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-normal);
+        }
+        
+        /* Mixes Section */
+        .mixes { background: var(--color-surface); }
+        
+        .mixes__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-24);
+        }
+        
+        .mix__card {
+            background: var(--color-dark-bg);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .mix__card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--color-primary-green);
+        }
+        
+        .mix__content {
+            padding: var(--space-24);
+        }
+        
+        .mix__title {
+            color: var(--color-primary-green);
+            margin-bottom: var(--space-12);
+            font-size: var(--font-size-lg);
+        }
+        
+        .mix__description {
+            color: var(--color-gray-200);
+            margin-bottom: var(--space-16);
+            line-height: var(--line-height-normal);
+        }
+        
+        /* Events Section */
+        .events { background: var(--color-dark-bg); }
+        
+        .events__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-24);
+        }
+        
+        .event__card {
+            background: var(--color-surface);
+            padding: var(--space-24);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        
+        .event__card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+        }
+        
+        .event__date {
+            background: var(--color-primary-green);
+            color: var(--color-dark-bg);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-bold);
+            display: inline-block;
+            margin-bottom: var(--space-16);
+        }
+        
+        .event__title {
+            color: var(--color-primary-green);
+            margin-bottom: var(--space-8);
+            font-size: var(--font-size-xl);
+        }
+        
+        .event__venue {
+            color: var(--color-text-secondary);
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-12);
+        }
+        
+        .event__description {
+            color: var(--color-text);
+            line-height: var(--line-height-normal);
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--color-primary-green) 0%, var(--color-green-dark) 100%);
+            color: var(--color-white);
+            text-align: center;
+        }
+        
+        .cta__title {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-16);
+            color: var(--color-white);
+        }
+        
+        .cta__description {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-32);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta__buttons {
+            display: flex;
+            gap: var(--space-16);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta .btn--primary {
+            background: var(--color-dark-bg);
+            color: var(--color-primary-green);
+        }
+        
+        .cta .btn--outline {
+            border-color: var(--color-white);
+            color: var(--color-white);
+        }
+        
+        .cta .btn--outline:hover {
+            background: var(--color-white);
+            color: var(--color-green-dark);
+        }
+        
+        /* Contact Section */
+        .contact { background: var(--color-surface); }
+        
+        .contact__container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-32);
+        }
+        
+        .contact__info h3, .contact__social h3 {
+            color: var(--color-primary-green);
+            margin-bottom: var(--space-16);
+            font-size: var(--font-size-2xl);
+        }
+        
+        .social__link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            color: var(--color-text);
+            text-decoration: none;
+            padding: var(--space-12);
+            border-radius: var(--radius-base);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            transition: all var(--duration-fast) var(--ease-standard);
+            margin-bottom: var(--space-12);
+        }
+        
+        .social__link:hover {
+            border-color: var(--color-primary-green);
+            background: var(--color-accent-bg);
+            transform: translateX(5px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-dark-bg);
+            color: var(--color-gray-200);
+            text-align: center;
+            padding: var(--space-32) var(--space-24);
+            border-top: 1px solid rgba(34, 197, 94, 0.1);
+        }
+        
+        .footer p {
+            margin-bottom: var(--space-12);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav__menu { 
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                padding: var(--space-24);
+                border-top: 1px solid rgba(34, 197, 94, 0.2);
+            }
+            
+            .nav__menu.active { display: flex; }
+            
+            .nav__toggle { display: flex; }
+            
+            .about__container,
+            .contact__container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero__title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header" style="background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px);">
+        <nav class="nav container">
+            <a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#home" class="nav__brand active">DJ MUSCLE</a>
+            
+            <ul class="nav__menu" id="nav-menu">
+                <li><a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#home" class="nav__link">Home</a></li>
+                <li><a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#about" class="nav__link">About</a></li>
+                <li><a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#genres" class="nav__link">Genres</a></li>
+                <li><a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#mixes" class="nav__link">Mixes</a></li>
+                <li><a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#events" class="nav__link">Events</a></li>
+                <li><a href="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d5ec59daa3b4b65b42e63374b157169/c647a6c7-f68b-4743-b346-b15c9c78091d/canvas-app/index.html#contact" class="nav__link">Contact</a></li>
+            </ul>
+            
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero__content">
+            <h1 class="hero__title">Open Format DJ from <span>Eswatini</span></h1>
+            <p class="hero__subtitle">
+                Bringing you the finest selection of Afro House, Amapiano, Deep House, and more from the heart of Africa to the world.
+            </p>
+            <div class="hero__buttons">
+                <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                    🎵 Listen on Mixcloud
+                </a>
+                <a href="https://www.instagram.com/dj_muscle/" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+                    📷 Follow on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section__title">About DJ Muscle</h2>
+            <div class="about__container">
+                <div class="about__text">
+                    <h3 class="about__name">Mandla P. Reissmann</h3>
+                    <p class="about__bio">
+                        "I'm not a musician, but I play music." DJ Muscle is a versatile open format DJ from Mbabane, Eswatini, 
+                        with over a decade of experience in the music industry. Known as 'The All Rounder' for his seamless mixing 
+                        across multiple genres, he has performed at major festivals and continues to captivate audiences internationally.
+                    </p>
+                    <p class="about__bio">
+                        Currently based between Eswatini and Cork, Ireland, DJ Muscle is bringing the best of African rhythms 
+                        and global beats to dance floors across Europe. With 111 shows on Mixcloud and performances at iconic 
+                        venues like Cyprus Avenue, Crane Lane Theatre, and House On Fire Amphitheatre, his unique blend of 
+                        Afro House, Amapiano, and everything groovy keeps the energy high.
+                    </p>
+                </div>
+                <div class="about__stats">
+                    <div class="stat">
+                        <span class="stat__number">111+</span>
+                        <span class="stat__label">Mixcloud Shows</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">280</span>
+                        <span class="stat__label">Mixcloud Followers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">10+</span>
+                        <span class="stat__label">Years Experience</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section class="section genres" id="genres">
+        <div class="container">
+            <h2 class="section__title">Musical Genres</h2>
+            <div class="genres__grid">
+                <div class="genre__card">
+                    <div class="genre__icon">🌍</div>
+                    <h3 class="genre__title">Afro House</h3>
+                    <p class="genre__description">
+                        Infectious rhythms and soulful melodies from the heart of Africa
+                    </p>
+                </div>
+                
+                <div class="genre__card">
+                    <div class="genre__icon">🎹</div>
+                    <h3 class="genre__title">Amapiano</h3>
+                    <p class="genre__description">
+                        South African sound that's taking the world by storm
+                    </p>
+                </div>
+                
+                <div class="genre__card">
+                    <div class="genre__icon">🎧</div>
+                    <h3 class="genre__title">Deep House</h3>
+                    <p class="genre__description">
+                        Smooth, sophisticated grooves for the discerning listener
+                    </p>
+                </div>
+                
+                <div class="genre__card">
+                    <div class="genre__icon">🎶</div>
+                    <h3 class="genre__title">Soul &amp; R&amp;B</h3>
+                    <p class="genre__description">
+                        Classic vibes that never go out of style
+                    </p>
+                </div>
+                
+                <div class="genre__card">
+                    <div class="genre__icon">🎵</div>
+                    <h3 class="genre__title">Nu-Disco</h3>
+                    <p class="genre__description">
+                        Modern electronic sounds with a retro twist
+                    </p>
+                </div>
+                
+                <div class="genre__card">
+                    <div class="genre__icon">🔊</div>
+                    <h3 class="genre__title">Open Format</h3>
+                    <p class="genre__description">
+                        Seamless mixing across all genres for every crowd
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mixes Section -->
+    <section class="section mixes" id="mixes">
+        <div class="container">
+            <h2 class="section__title">Featured Mixes</h2>
+            <div class="mixes__grid">
+                <div class="mix__card">
+                    <div class="mix__content">
+                        <h3 class="mix__title">Afterwork: Guest Abbie Lee</h3>
+                        <p class="mix__description">
+                            Monthly deep house sessions perfect for unwinding with special guest Abbie Lee
+                        </p>
+                        <a href="https://www.mixcloud.com/DJMuscle/afterwork-guest-abbie-lee/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Listen Now</a>
+                    </div>
+                </div>
+                
+                <div class="mix__card">
+                    <div class="mix__content">
+                        <h3 class="mix__title">Afro House &amp; Amapiano #24</h3>
+                        <p class="mix__description">
+                            High-energy Amapiano mixed with house jams for a lovely cocktail
+                        </p>
+                        <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Listen Now</a>
+                    </div>
+                </div>
+                
+                <div class="mix__card">
+                    <div class="mix__content">
+                        <h3 class="mix__title">Afterwork June 2025: Summer!</h3>
+                        <p class="mix__description">
+                            Summer vibes with the best deep house selections
+                        </p>
+                        <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Listen Now</a>
+                    </div>
+                </div>
+                
+                <div class="mix__card">
+                    <div class="mix__content">
+                        <h3 class="mix__title">Supaphly Vol. 7 Amapiano</h3>
+                        <p class="mix__description">
+                            Live on EBIS2 fm Eswatini featuring supreme Amapiano selections
+                        </p>
+                        <a href="https://www.mixcloud.com/DJMuscle/supaphly-vol-7-amapiano/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Listen Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--space-32);">
+                <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+                    View All 111 Mixes
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="section events" id="events">
+        <div class="container">
+            <h2 class="section__title">Events &amp; Performances</h2>
+            <div class="events__grid">
+                <div class="event__card">
+                    <span class="event__date">Monthly</span>
+                    <h3 class="event__title">Liquid Lounge Sessions</h3>
+                    <p class="event__venue">Liquid Lounge, Cork City</p>
+                    <p class="event__description">
+                        Regular monthly deep house sessions in Cork's premier lounge venue
+                    </p>
+                </div>
+                
+                <div class="event__card">
+                    <span class="event__date">Recurring</span>
+                    <h3 class="event__title">Afro-House Amapiano Nights</h3>
+                    <p class="event__venue">Cyprus Avenue, Cork</p>
+                    <p class="event__description">
+                        Bringing the best of African electronic music to Irish audiences with guest DJs
+                    </p>
+                </div>
+                
+                <div class="event__card">
+                    <span class="event__date">Past Event</span>
+                    <h3 class="event__title">Ralf Gum Support</h3>
+                    <p class="event__venue">Cyprus Avenue, Cork</p>
+                    <p class="event__description">
+                        Supporting international house music legend Ralf Gum at his Irish debut
+                    </p>
+                </div>
+                
+                <div class="event__card">
+                    <span class="event__date">May 2024</span>
+                    <h3 class="event__title">Africa Day Cork</h3>
+                    <p class="event__venue">Crane Lane Theatre</p>
+                    <p class="event__description">
+                        Celebrating African culture and music at Cork's annual Africa Day event
+                    </p>
+                </div>
+                
+                <div class="event__card">
+                    <span class="event__date">Summer</span>
+                    <h3 class="event__title">Wavelength Rooftop</h3>
+                    <p class="event__venue">Rooftop, Cork</p>
+                    <p class="event__description">
+                        Stunning rooftop sessions with breathtaking views and groovy beats
+                    </p>
+                </div>
+                
+                <div class="event__card">
+                    <span class="event__date">Annual</span>
+                    <h3 class="event__title">Luju Festival</h3>
+                    <p class="event__venue">House On Fire Amphitheatre, Eswatini</p>
+                    <p class="event__description">
+                        Epic outdoor festival performance at Eswatini's legendary venue
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="container">
+            <h2 class="cta__title">Ready to Book DJ Muscle?</h2>
+            <p class="cta__description">
+                Bring the All Rounder to your event. Available for clubs, festivals, private events, and corporate functions.
+            </p>
+            <div class="cta__buttons">
+                <a href="https://www.instagram.com/dj_muscle/" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                    Get In Touch
+                </a>
+                <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+                    Subscribe on Mixcloud
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section__title">Connect With DJ Muscle</h2>
+            <div class="contact__container">
+                <div class="contact__info">
+                    <h3>Get In Touch</h3>
+                    <p style="color: var(--color-text); line-height: 1.8; margin-bottom: var(--space-24);">
+                        Based between Eswatini and Cork, Ireland. Available for bookings worldwide. 
+                        Reach out via social media for inquiries and booking requests.
+                    </p>
+                </div>
+                
+                <div class="contact__social">
+                    <h3>Follow the Journey</h3>
+                    <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" rel="noopener noreferrer" class="social__link">
+                        <span>🎵</span>
+                        <span>Mixcloud - All 111 Shows</span>
+                    </a>
+                    <a href="https://www.instagram.com/dj_muscle/" target="_blank" rel="noopener noreferrer" class="social__link">
+                        <span>📷</span>
+                        <span>Instagram - @dj_muscle</span>
+                    </a>
+                    <a href="https://www.instagram.com/dj_muscle/" target="_blank" rel="noopener noreferrer" class="social__link">
+                        <span>🎉</span>
+                        <span>Event Photos &amp; Updates</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 DJ Muscle. All rights reserved.</p>
+            <p>Open Format DJ from Eswatini | Cork, Ireland</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav__link');
+        
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                navToggle.classList.toggle('active');
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+        
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            if (scrollTop > 50) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+                header.style.backdropFilter = 'blur(15px)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+        
+        // Active Navigation Highlighting
+        const sections = document.querySelectorAll('section[id]');
+        function highlightNavigation() {
+            const scrollY = window.pageYOffset;
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`a[href="#${sectionId}"]`);
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    if (navLink) navLink.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', highlightNavigation);
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        console.log('DJ Muscle website loaded successfully! 🎵🌍');
+    </script>
+
+
+</body></html>
