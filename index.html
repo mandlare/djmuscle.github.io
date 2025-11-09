@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJ Muscle - Afro House & Amapiano DJ</title>
-    <meta name="description" content="DJ Muscle - Open Format DJ from Eswatini. Specializing in Afro House, Amapiano, and Deep House. 111+ shows on Mixcloud.">
+    <meta name="description" content="DJ Muscle - Open Format DJ from Eswatini. Afro House, Amapiano, Deep House. 111+ Mixcloud shows.">
     <style>
         * {
             margin: 0;
@@ -23,10 +23,11 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--black);
             color: var(--white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -41,261 +42,385 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.2rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.8rem;
+            font-weight: 900;
             color: var(--green);
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-menu a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1rem;
             transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: width 0.3s;
         }
 
         .nav-menu a:hover {
             color: var(--green);
         }
 
-        .social-links {
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .social-icons {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
-        .social-links a {
+        .social-icons a {
             color: var(--white);
-            font-size: 1.2rem;
-            transition: color 0.3s;
+            font-size: 1.4rem;
+            transition: all 0.3s;
         }
 
-        .social-links a:hover {
+        .social-icons a:hover {
             color: var(--green);
+            transform: scale(1.1);
         }
 
-        /* Hero Section */
+        /* Hero Section with Large Image */
         .hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
-                        url('https://images.unsplash.com/photo-1571266028243-d220f2a7e90e?w=1600') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=2000&q=80') center/cover fixed;
             text-align: center;
             padding: 2rem;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            letter-spacing: 3px;
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
-        .hero p {
-            font-size: 1.5rem;
+        .hero h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
             color: var(--green-light);
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             background: var(--green);
             color: var(--white);
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
             transition: all 0.3s;
-            margin: 0.5rem;
+            box-shadow: 0 5px 20px rgba(34, 197, 94, 0.3);
         }
 
         .btn:hover {
             background: var(--green-dark);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(34, 197, 94, 0.5);
         }
 
         .btn-outline {
             background: transparent;
             border: 2px solid var(--green);
+            box-shadow: none;
         }
 
         .btn-outline:hover {
             background: var(--green);
+            box-shadow: 0 5px 20px rgba(34, 197, 94, 0.3);
         }
 
         /* Sections */
         section {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 5rem 2rem;
+            padding: 6rem 3rem;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             color: var(--green);
             text-align: center;
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .subtitle {
             text-align: center;
             color: #a1a1aa;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
         }
 
         /* About Section */
+        .about {
+            background: var(--gray-dark);
+            border-radius: 20px;
+            padding: 5rem 3rem;
+            border: 1px solid var(--gray);
+        }
+
         .about-content {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            line-height: 2;
         }
 
         .quote {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-style: italic;
             color: var(--green-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
 
         .stats {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .stat {
-            background: var(--gray-dark);
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: var(--black);
+            padding: 2rem;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid var(--gray);
+            border: 2px solid var(--gray);
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            border-color: var(--green);
+            transform: translateX(10px);
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 900;
             color: var(--green);
         }
 
         .stat-label {
             color: #a1a1aa;
+            font-size: 1rem;
+            margin-top: 0.5rem;
         }
 
         /* Genres Grid */
+        .genres {
+            background: var(--black);
+        }
+
         .genres-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .genre-card {
             background: var(--gray-dark);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 2.5rem;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid var(--gray);
-            transition: all 0.3s;
+            border: 2px solid var(--gray);
+            transition: all 0.4s;
+            cursor: pointer;
         }
 
         .genre-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
             border-color: var(--green);
-            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+            box-shadow: 0 15px 40px rgba(34, 197, 94, 0.3);
+            background: var(--black);
         }
 
         .genre-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
         }
 
         .genre-card h3 {
             color: var(--green);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        /* Mixcloud Section */
-        .mixcloud-embed {
+        .genre-card p {
+            color: #a1a1aa;
+            line-height: 1.6;
+        }
+
+        /* Mixes Section - Shows 3-4 Latest */
+        .mixes {
             background: var(--gray-dark);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-            border: 1px solid var(--gray);
+            border-radius: 20px;
+            padding: 5rem 3rem;
         }
 
-        .mixcloud-embed iframe {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        /* Instagram Section */
-        .instagram-feed {
+        .mixes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* CTA Section */
-        .cta {
+        .mix-card {
+            background: var(--black);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 2px solid var(--gray);
+            transition: all 0.3s;
+        }
+
+        .mix-card:hover {
+            border-color: var(--green);
+            transform: translateY(-5px);
+        }
+
+        .mix-card iframe {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .cta-button {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Instagram Section */
+        .instagram {
+            background: var(--black);
+        }
+
+        .instagram-feed {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--gray-dark);
+            border-radius: 15px;
+            border: 2px solid var(--gray);
+        }
+
+        /* Contact/CTA Section */
+        .cta-section {
             background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
             border-radius: 20px;
-            padding: 4rem 2rem;
+            padding: 5rem 3rem;
             text-align: center;
+            margin: 4rem auto;
         }
 
-        .cta h2 {
+        .cta-section h2 {
             color: var(--white);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255,255,255,0.9);
         }
 
         /* Contact Section */
+        .contact {
+            background: var(--gray-dark);
+            border-radius: 20px;
+            padding: 5rem 3rem;
+        }
+
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
+            margin-top: 3rem;
         }
 
         .contact-info h3 {
             color: var(--green);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .contact-info ul {
             list-style: none;
-            margin: 1rem 0;
+            margin: 2rem 0;
         }
 
         .contact-info li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.8rem 0;
+            padding-left: 2rem;
             position: relative;
+            font-size: 1.1rem;
         }
 
         .contact-info li:before {
@@ -303,37 +428,56 @@
             color: var(--green);
             position: absolute;
             left: 0;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         /* Footer */
         footer {
-            background: var(--gray-dark);
-            padding: 2rem;
+            background: var(--black);
+            padding: 3rem 2rem;
             text-align: center;
-            border-top: 1px solid var(--gray);
+            border-top: 2px solid var(--gray);
         }
 
         footer p {
             color: #a1a1aa;
+            margin-bottom: 1rem;
         }
 
         footer a {
             color: var(--green);
             text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            color: var(--green-light);
         }
 
         /* Mobile Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .nav-menu {
                 display: none;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3.5rem;
             }
 
-            .hero p {
-                font-size: 1.2rem;
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
             .about-content,
@@ -341,12 +485,17 @@
                 grid-template-columns: 1fr;
             }
 
-            .genres-grid {
+            .genres-grid,
+            .mixes-grid {
                 grid-template-columns: 1fr;
             }
 
             section {
-                padding: 3rem 1rem;
+                padding: 4rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -360,96 +509,9 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#genres">Genres</a></li>
                 <li><a href="#mixes">Mixes</a></li>
-                <li><a href="#instagram">Events</a></li>
+                <li><a href="#instagram">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="social-links">
-                <a href="https://www.instagram.com/dj_muscle/" target="_blank" title="Instagram">📷</a>
-                <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" title="Mixcloud">🎵</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div>
-            <h1>DJ MUSCLE</h1>
-            <p>Afro House • Amapiano • Open Format</p>
-            <div>
-                <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" class="btn">Listen on Mixcloud</a>
-                <a href="#contact" class="btn btn-outline">Book DJ Muscle</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2>About DJ Muscle</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p class="quote">"I'm not a musician, but I play music."</p>
-                <p>Open format DJ from Eswatini (Swaziland) bringing Afro House, Amapiano, and everything groovy to dance floors across Ireland and beyond.</p>
-                <p style="margin-top: 1rem;">With 111 shows on Mixcloud and performances at iconic venues like Cyprus Avenue, Crane Lane Theatre, Liquid Lounge, and House On Fire Amphitheatre, DJ Muscle delivers high-energy sets that blend African rhythms with global beats.</p>
-            </div>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">111+</div>
-                    <div class="stat-label">Mixcloud Shows</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">280+</div>
-                    <div class="stat-label">Followers</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Genres Section -->
-    <section id="genres">
-        <h2>Musical Styles</h2>
-        <div class="genres-grid">
-            <div class="genre-card">
-                <div class="genre-icon">🎵</div>
-                <h3>Afro House</h3>
-                <p>Deep African rhythms with modern house beats</p>
-            </div>
-            <div class="genre-card">
-                <div class="genre-icon">🔥</div>
-                <h3>Amapiano</h3>
-                <p>South African piano-driven house music</p>
-            </div>
-            <div class="genre-card">
-                <div class="genre-icon">🌊</div>
-                <h3>Deep House</h3>
-                <p>Soulful melodies and smooth grooves</p>
-            </div>
-            <div class="genre-card">
-                <div class="genre-icon">✨</div>
-                <h3>Soul & R&B</h3>
-                <p>Classic soul with contemporary vibes</p>
-            </div>
-            <div class="genre-card">
-                <div class="genre-icon">💫</div>
-                <h3>Nu-Disco</h3>
-                <p>Modern takes on disco classics</p>
-            </div>
-            <div class="genre-card">
-                <div class="genre-icon">🎧</div>
-                <h3>Open Format</h3>
-                <p>Versatile mixing across all genres</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mixes Section with Live Mixcloud Feed -->
-    <section id="mixes">
-        <h2>Latest Mixes</h2>
-        <p class="subtitle">Always updated with the newest sets from Mixcloud</p>
-        <div class="mixcloud-embed">
-            <iframe width="100%" height="400" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FDJMuscle%2F" frameborder="0" allow="autoplay"></iframe>
-        </div>
-        <div style="text-align: center; margin
+            <div class="social-icons">
+                <a href="https://www.instagram.com/dj_muscle/" target="_blank" title="Instagram" aria-label="Instagram">📷</a>
+                <a href="https://www.mixcloud.com/DJMuscle/" target="_blank" title="Mixcloud" aria-label="Mixcloud">🎵</a>
